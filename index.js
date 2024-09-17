@@ -48,12 +48,3 @@ async function scrapeForeclosureLeads() {
 }
 
 scrapeForeclosureLeads();
-
-// //Extract data from the HTML table
-// const data = await page.evaluate(() => {
-//   const rows = document.querySelectorAll("table tr");
-//   return Array.from(rows, (row) => {
-//     const columns = row.querySelectorAll("td");
-//     return Array.from(columns, (column) => column.innerText);
-//   });
-// });
