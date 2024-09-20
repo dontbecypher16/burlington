@@ -1,4 +1,5 @@
 const puppeteer = require("puppeteer");
+const ExcelJS = require("exceljs");
 
 async function scrapeForeclosureLeads() {
   const browser = await puppeteer.launch();
@@ -14,6 +15,8 @@ async function scrapeForeclosureLeads() {
     links.map((link) => link.href)
   );
 
+  const rawData = [];
+
   // Loop through each link and perform the desired actions
   for (let i = 0; i < detailsLinks.length; i++) {
     console.log(`Scraping details for property ${i + 1}`);
@@ -27,7 +30,6 @@ async function scrapeForeclosureLeads() {
     // Scrape the data from the details page
     const data = await page.evaluate(() => {
       // Extract relevant data from the details page
-
       const rows = document.querySelectorAll("table tr");
       return Array.from(rows, (row) => {
         const columns = row.querySelectorAll("td");
@@ -45,6 +47,7 @@ async function scrapeForeclosureLeads() {
   }
 
   await browser.close();
+  //return rawData;
 }
 
 scrapeForeclosureLeads();
